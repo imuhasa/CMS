@@ -128,12 +128,19 @@ const formControl = (form, data) => {
 		} else {
 			newItem.total = +(newItem.amount) * +(newItem.price);
 		};
+		fetch('https://goldenrod-scythe-heather.glitch.me/api/goods',{
+   		 method:'POST',
+   		 headers: {
+   		 "Content-Type": "application/json", 
+   		 },
+   		 body: JSON.stringify(newItem),
+   		 mode:'cors'
+		})
 		data.push(newItem);
 		addItem(newItem, itemList);
-		setStorage();
 		e.target.reset();
 		popupClose();
-		location.reload();
+	
 		calculateTotal();
 		
 	});
